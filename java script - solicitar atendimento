@@ -1,0 +1,100 @@
+// Função para alterar página e marcar a última página visitada
+function goToAndFinalPage(value) {
+  goToPage = value;
+  finalPage = value;
+}
+
+// Inicializar dados do usuário atual
+for (let i = 0; i < users.length; i++) {
+  if (currentUser === users[i].id) {
+    data.txtNOME = `${users[i].firstName} ${users[i].lastName}`;
+    data.txtEMAIL = users[i].email;
+    break;
+  }
+}
+
+// Configurações iniciais
+if (runOnce) {
+  showUploadedFiles = true; // Mostrar arquivos anexados
+  data.BeneficioGeral = false;
+}
+
+// Mapeamento de combinações de atendimento e categorias para páginas
+const pageMap = {
+  "Assistência Médica": {
+    "Alteração cadastral": { page: 2, anexoObrigatorio: false },
+    "Acesso ao aplicativo": { page: 3, anexoObrigatorio: true },
+    "Exclusão de dependentes": { page: 4, anexoObrigatorio: false },
+    "Inclusão de dependentes": { page: 5, anexoObrigatorio: false },
+    "Rede Referenciada": { page: 6, anexoObrigatorio: false },
+    "Informações sobre Descontos": { page: 7, anexoObrigatorio: false },
+    "Informações sobre Reembolso": { page: 8, anexoObrigatorio: false },
+  },
+  "Vale Transporte": {
+    "Solicitação do vale": { page: 9, anexoObrigatorio: false },
+    "Cancelamento": { page: 10, anexoObrigatorio: false },
+    "Prazo de entrega": { page: 11, anexoObrigatorio: false },
+    "Reajuste de Tarifa": { page: 12, anexoObrigatorio: false },
+    "Solicitação de 2ª Via": { page: 13, anexoObrigatorio: false },
+    "Dúvidas / Orientações": { page: 14, anexoObrigatorio: false },
+    "Informação sobre Liberação de Créditos": { page: 15, anexoObrigatorio: false },
+  },
+  "Lincard (Grêmio Virtual)": {
+    "Solicitação": { page: 16, anexoObrigatorio: false },
+    "Cancelamento": { page: 17, anexoObrigatorio: false },
+    "Dúvidas/Orientações": { page: 18, anexoObrigatorio: false },
+  },
+  "Cartão Flash": {
+    "Prazo de Entrega": { page: 19, anexoObrigatorio: false },
+    "Distribuição de Valores": { page: 20, anexoObrigatorio: false },
+    "Dúvidas / Orientações": { page: 21, anexoObrigatorio: false },
+    "Informação sobre Liberação de Créditos": { page: 22, anexoObrigatorio: false },
+  },
+  "Assistência Odontológica": {
+    "Alteração cadastral": { page: 23, anexoObrigatorio: false },
+    "Exclusão de dependentes": { page: 24, anexoObrigatorio: false },
+    "Inclusão de dependentes": { page: 25, anexoObrigatorio: false },
+    "Dúvida/Orientação": { page: 26, anexoObrigatorio: false },
+    "Solicitar Mudança de Plano": { page: 27, anexoObrigatorio: false },
+    "Informações sobre Descontos": { page: 28, anexoObrigatorio: false },
+    "Informações sobre Planos Disponíveis": { page: 29, anexoObrigatorio: false },
+    "Informações sobre Reembolso": { page: 30, anexoObrigatorio: false },
+  },
+  "Vale Alimentação": {
+    "Alteração": { page: 31, anexoObrigatorio: false },
+    "Dúvidas / Orientações": { page: 32, anexoObrigatorio: false },
+    "Prazo de entrega": { page: 33, anexoObrigatorio: false },
+    "Solicitação de 2ª Via": { page: 34, anexoObrigatorio: false },
+  },
+  "Vale Refeição": {
+    "Alteração": { page: 35, anexoObrigatorio: false },
+    "Dúvidas / Orientações": { page: 36, anexoObrigatorio: false },
+    "Solicitação de 2ª Via": { page: 37, anexoObrigatorio: false },
+    "Prazo de entrega": { page: 38, anexoObrigatorio: false },
+  },
+  "Seguro de Vida": {
+    "Alteração Cadastral": { page: 39, anexoObrigatorio: false },
+  },
+};
+
+// Lógica para navegação com base nos dados da primeira página
+if (continueClicked && currentPage === 1) {
+  const categoria = pageMap[data.sltCATEGORIA];
+  const atendimento = categoria?.[data.sltATENDIMENTO];
+
+  if (atendimento) {
+    goToAndFinalPage(atendimento.page);
+    data.AnexoObrigatorio = atendimento.anexoObrigatorio;
+    data.BeneficioGeral = true;
+  }
+}
+
+// Code to run on the second page
+if (continueClicked && currentPage === 2) {
+  
+}
+
+// Code to run after submit is clicked
+if (submitting) {
+
+}
